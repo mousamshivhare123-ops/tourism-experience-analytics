@@ -42,12 +42,17 @@ if page == "Dashboard":
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Visit Modes")
-        visit_mode_col = next((c for c in ["VisitMode", "VisitModeName", "VisitMode_x", "VisitMode_y"] if c in df.columns), None)
+                with col1:
+            st.subheader("Visit Modes")
 
-if visit_mode_col:
-    st.bar_chart(df[visit_mode_col].value_counts())
-else:
-    st.info("Visit mode data is not available in the master dataset.")
+            if "VisitMode_y" in df.columns:
+                st.bar_chart(df["VisitMode_y"].value_counts())
+            elif "VisitModeName" in df.columns:
+                st.bar_chart(df["VisitModeName"].value_counts())
+            elif "VisitMode" in df.columns:
+                st.bar_chart(df["VisitMode"].value_counts())
+            else:
+                st.info("Visit mode data is not available.")
     with col2:
         st.subheader("Top Attraction Types")
         st.bar_chart(df["AttractionType"].value_counts().head(10))
