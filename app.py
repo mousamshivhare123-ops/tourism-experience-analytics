@@ -38,32 +38,30 @@ if page == "Dashboard":
     c2.metric("Users", f"{df['UserId'].nunique():,}")
     c3.metric("Attractions", f"{df['AttractionId'].nunique():,}")
     c4.metric("Average Rating", f"{df['Rating'].mean():.2f}")
-
-    col1, col2 = st.columns(2)
+col1, col2 = st.columns(2)
     with col1:
         st.subheader("Visit Modes")
-                with col1:
-            st.subheader("Visit Modes")
 
-            if "VisitMode_y" in df.columns:
-                st.bar_chart(df["VisitMode_y"].value_counts())
-            elif "VisitModeName" in df.columns:
-                st.bar_chart(df["VisitModeName"].value_counts())
-            elif "VisitMode" in df.columns:
-                st.bar_chart(df["VisitMode"].value_counts())
-            else:
-                st.info("Visit mode data is not available.")
+        if "VisitMode_y" in df.columns:
+            st.bar_chart(df["VisitMode_y"].value_counts())
+        elif "VisitModeName" in df.columns:
+            st.bar_chart(df["VisitModeName"].value_counts())
+        elif "VisitMode" in df.columns:
+            st.bar_chart(df["VisitMode"].value_counts())
+        else:
+            st.info("Visit mode data is not available.")
+            
     with col2:
         st.subheader("Top Attraction Types")
         st.bar_chart(df["AttractionType"].value_counts().head(10))
 
     st.subheader("Top Attractions by Number of Ratings")
     top = df.groupby("Attraction").agg(
-        Ratings=("Rating","count"),
-        Average_Rating=("Rating","mean")
+        Ratings=("Rating", "count"),
+        Average_Rating=("Rating", "mean")
     ).sort_values("Ratings", ascending=False).head(10)
     st.dataframe(top, use_container_width=True)
-
+    
 elif page == "Rating Prediction":
     st.header("⭐ Attraction Rating Prediction")
     row = {
