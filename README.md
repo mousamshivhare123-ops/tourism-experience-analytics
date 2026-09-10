@@ -1,5 +1,9 @@
 # Tourism Experience Analytics
 
+🚀 **Live Streamlit App:** (https://tourism-experience-analytics-4zhxqfet6mae7sbpmxrjnu.streamlit.app/)
+
+# Tourism Experience Analytics
+
 ## Project Title
 **Tourism Experience Analytics: Classification, Prediction, and Recommendation System**
 
